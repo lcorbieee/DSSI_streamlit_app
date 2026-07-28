@@ -2,3 +2,4 @@ import streamlit as st
 import pandas as pd
 
 st.title("CHI 311 2019-2025 Data Snapshot\n")
+st.markdown("Powered by UChicago Data Science for Social Impact")
