@@ -9,13 +9,13 @@ title_mark = st.markdown("Powered by UChicago Data Science for Social Impact and
 tab_forecast, tab_geospastial, tab_snapshot, tab_breakdown = st.container(border=True).tabs(["Forecasting 🔮", "Geospatial Analysis 🗺️", "Snapshots 📸", "Dataset Breakdown 🧐"])
 
 # tab_forecast formatting
-with tab_forecast:
+# with tab_forecast:
+#     st.
+# # tab_geospastial formatting
+# with tab_geospastial:
 
-# tab_geospastial formatting
-with tab_geospastial:
+# # tab_snapshot formatting
+# with tab_snapshot:
 
-# tab_snapshot formatting
-with tab_snapshot:
-
-# tab_breakdown formatting
-with tab_breakdown:
+# # tab_breakdown formatting
+# with tab_breakdown:
