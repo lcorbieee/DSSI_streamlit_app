@@ -7,4 +7,3 @@ title_mark = st.markdown("Powered by the City of Chicago and UChicago DSSI")
 
 # sidebar formatting
 tab1, tab2, tab3, tab4 = st.tabs(["Home", "Dataset Breakdown", "Geospatial Analysis", "Forecasting"])
-st.sidebar.write("Select how you want to interpret our data:")
