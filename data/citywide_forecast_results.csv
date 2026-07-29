@@ -1,0 +1,91 @@
+date,request_type,model,actual,predicted
+2024-10,All Requests (citywide total),Linear Regression,65536.0,60712.3
+2024-11,All Requests (citywide total),Linear Regression,54199.0,58571.1
+2024-12,All Requests (citywide total),Linear Regression,49340.0,51556.1
+2025-01,All Requests (citywide total),Linear Regression,54842.0,57298.4
+2025-02,All Requests (citywide total),Linear Regression,52717.0,59960.6
+2025-03,All Requests (citywide total),Linear Regression,67832.0,61442.2
+2025-04,All Requests (citywide total),Linear Regression,68927.0,75477.3
+2025-05,All Requests (citywide total),Linear Regression,79119.0,80053.8
+2025-06,All Requests (citywide total),Linear Regression,80384.0,81779.5
+2025-07,All Requests (citywide total),Linear Regression,92527.0,81536.7
+2025-08,All Requests (citywide total),Linear Regression,94551.0,77346.0
+2025-09,All Requests (citywide total),Linear Regression,68989.0,70167.8
+2025-10,All Requests (citywide total),Linear Regression,63472.0,62556.3
+2025-11,All Requests (citywide total),Linear Regression,53175.0,57145.1
+2025-12,All Requests (citywide total),Linear Regression,48904.0,48796.4
+2024-10,All Requests (citywide total),Random Forest,65536.0,61497.8
+2024-11,All Requests (citywide total),Random Forest,54199.0,59462.1
+2024-12,All Requests (citywide total),Random Forest,49340.0,50575.5
+2025-01,All Requests (citywide total),Random Forest,54842.0,58205.9
+2025-02,All Requests (citywide total),Random Forest,52717.0,56446.6
+2025-03,All Requests (citywide total),Random Forest,67832.0,56133.9
+2025-04,All Requests (citywide total),Random Forest,68927.0,78895.0
+2025-05,All Requests (citywide total),Random Forest,79119.0,76281.3
+2025-06,All Requests (citywide total),Random Forest,80384.0,81413.6
+2025-07,All Requests (citywide total),Random Forest,92527.0,83470.4
+2025-08,All Requests (citywide total),Random Forest,94551.0,81399.3
+2025-09,All Requests (citywide total),Random Forest,68989.0,85516.3
+2025-10,All Requests (citywide total),Random Forest,63472.0,62125.2
+2025-11,All Requests (citywide total),Random Forest,53175.0,56329.0
+2025-12,All Requests (citywide total),Random Forest,48904.0,51779.5
+2024-10,All Requests (citywide total),Gradient Boosting,65536.0,63023.1
+2024-11,All Requests (citywide total),Gradient Boosting,54199.0,57979.5
+2024-12,All Requests (citywide total),Gradient Boosting,49340.0,49694.2
+2025-01,All Requests (citywide total),Gradient Boosting,54842.0,57259.7
+2025-02,All Requests (citywide total),Gradient Boosting,52717.0,55082.6
+2025-03,All Requests (citywide total),Gradient Boosting,67832.0,56293.9
+2025-04,All Requests (citywide total),Gradient Boosting,68927.0,80060.1
+2025-05,All Requests (citywide total),Gradient Boosting,79119.0,89788.7
+2025-06,All Requests (citywide total),Gradient Boosting,80384.0,80190.9
+2025-07,All Requests (citywide total),Gradient Boosting,92527.0,84784.9
+2025-08,All Requests (citywide total),Gradient Boosting,94551.0,78543.1
+2025-09,All Requests (citywide total),Gradient Boosting,68989.0,89833.4
+2025-10,All Requests (citywide total),Gradient Boosting,63472.0,62296.8
+2025-11,All Requests (citywide total),Gradient Boosting,53175.0,55512.8
+2025-12,All Requests (citywide total),Gradient Boosting,48904.0,56352.1
+2024-10,All Requests (citywide total),MLP,65536.0,61498.7
+2024-11,All Requests (citywide total),MLP,54199.0,58578.9
+2024-12,All Requests (citywide total),MLP,49340.0,53093.4
+2025-01,All Requests (citywide total),MLP,54842.0,54575.1
+2025-02,All Requests (citywide total),MLP,52717.0,57028.4
+2025-03,All Requests (citywide total),MLP,67832.0,57013.4
+2025-04,All Requests (citywide total),MLP,68927.0,76973.2
+2025-05,All Requests (citywide total),MLP,79119.0,79330.1
+2025-06,All Requests (citywide total),MLP,80384.0,79828.3
+2025-07,All Requests (citywide total),MLP,92527.0,79886.8
+2025-08,All Requests (citywide total),MLP,94551.0,82928.6
+2025-09,All Requests (citywide total),MLP,68989.0,79063.0
+2025-10,All Requests (citywide total),MLP,63472.0,68534.9
+2025-11,All Requests (citywide total),MLP,53175.0,54686.7
+2025-12,All Requests (citywide total),MLP,48904.0,48822.2
+2024-10,All Requests (citywide total),RNN,65536.0,64022.1
+2024-11,All Requests (citywide total),RNN,54199.0,59796.1
+2024-12,All Requests (citywide total),RNN,49340.0,51559.6
+2025-01,All Requests (citywide total),RNN,54842.0,56048.0
+2025-02,All Requests (citywide total),RNN,52717.0,57552.5
+2025-03,All Requests (citywide total),RNN,67832.0,57532.6
+2025-04,All Requests (citywide total),RNN,68927.0,78741.1
+2025-05,All Requests (citywide total),RNN,79119.0,77083.4
+2025-06,All Requests (citywide total),RNN,80384.0,87965.4
+2025-07,All Requests (citywide total),RNN,92527.0,85320.2
+2025-08,All Requests (citywide total),RNN,94551.0,79365.6
+2025-09,All Requests (citywide total),RNN,68989.0,80622.2
+2025-10,All Requests (citywide total),RNN,63472.0,67217.4
+2025-11,All Requests (citywide total),RNN,53175.0,58838.3
+2025-12,All Requests (citywide total),RNN,48904.0,48779.7
+2024-10,All Requests (citywide total),LSTM,65536.0,57814.9
+2024-11,All Requests (citywide total),LSTM,54199.0,60183.7
+2024-12,All Requests (citywide total),LSTM,49340.0,52539.3
+2025-01,All Requests (citywide total),LSTM,54842.0,50946.5
+2025-02,All Requests (citywide total),LSTM,52717.0,59621.5
+2025-03,All Requests (citywide total),LSTM,67832.0,59940.0
+2025-04,All Requests (citywide total),LSTM,68927.0,77922.6
+2025-05,All Requests (citywide total),LSTM,79119.0,77351.0
+2025-06,All Requests (citywide total),LSTM,80384.0,83729.5
+2025-07,All Requests (citywide total),LSTM,92527.0,78577.8
+2025-08,All Requests (citywide total),LSTM,94551.0,83793.2
+2025-09,All Requests (citywide total),LSTM,68989.0,81900.5
+2025-10,All Requests (citywide total),LSTM,63472.0,59391.6
+2025-11,All Requests (citywide total),LSTM,53175.0,56085.6
+2025-12,All Requests (citywide total),LSTM,48904.0,49860.8
