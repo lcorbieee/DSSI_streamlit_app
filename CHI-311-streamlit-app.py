@@ -38,7 +38,7 @@ with tab_geospastial:
 # tab_snapshot formatting
 with tab_snapshot:
     st.subheader("Enjoy some bite-sized analyses of our data.")
-    st.dataframe(categories, use_container_width=True)
+    st.dataframe(response_times, use_container_width=True)
 # tab_breakdown formatting
 with tab_breakdown:
     st.subheader("Learn more about our dataset and research methods.")
