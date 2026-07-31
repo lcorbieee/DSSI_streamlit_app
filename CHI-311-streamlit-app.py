@@ -19,28 +19,29 @@ st.markdown(
     [data-testid="stSidebarNavItems"] {
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
-        height: 50vh;   /* the container needs an actual height for
-                           space-between to have room to distribute into */
+        gap: 0.5rem;
+        font-size: 30px;
     }
     </style>
     """,
     unsafe_allow_html=True,
 )
 
-st.markdown(
-    """
-    <style>
-    [data-testid="stSidebarNavItems"] {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-        font-size: 20px;   /* default is ~14-16px — bump this up */
-    }
-    </style>
-    """,
-    unsafe_allow_html=True,
-)
+# st.markdown(
+#     """
+#     <style>
+#     [data-testid="stSidebarNavItems"] {
+#         display: flex;
+#         flex-direction: column;
+#         justify-content: space-between;
+#         gap: 0.5rem;
+#         height: 50vh;
+#         font-size: 30px;
+#     }
+#     </style>
+#     """,
+#     unsafe_allow_html=True,
+# )
 
 # --- Data loading (shared across every page, runs once per rerun) ----------
 @st.cache_data
