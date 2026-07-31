@@ -41,7 +41,7 @@ response_times = load_response_times()
 forecasts = load_forecasts()
 
 # home page formatting
-# title = st.title("CHI 311 PLACEHOLDER TITLE\n")
+title = st.title("CHI 311 PLACEHOLDER TITLE\n")
 title_mark = st.markdown("Powered by UChicago Data Science for Social Impact and the City of Chicago")
 
 # tab formatting
