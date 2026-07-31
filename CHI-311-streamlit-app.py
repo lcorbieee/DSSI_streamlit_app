@@ -4,7 +4,7 @@ import json
 import plotly.graph_objects as go
 
 st.set_page_config(
-    page_title="CHI 311 PLACEHOLDER TITLE\n", 
+    page_title="CHI 311 PLACEHOLDER TITLE", 
     page_icon="https://pbs.twimg.com/profile_images/1229828517526851584/4yqr6QTK_400x400.png", 
     layout="wide", 
     initial_sidebar_state="auto", 
@@ -12,8 +12,6 @@ st.set_page_config(
     'About': 'This dashboard was created by four students in the UChicago Data Science for Social Impact Summer Program.'
     }
     )
-
-
 
 @st.cache_data
 def load_entire_df():
@@ -51,14 +49,14 @@ tab_forecast, tab_geospastial, tab_snapshot, tab_breakdown = st.container(border
     ["Forecasting 🔮", "Geospatial Analysis 🗺️", "Snapshots 📸", "Dataset Breakdown 🧐"]
 )
 # sidebar formatting
-st.sidebar.write("CHI 311")
+st.sidebar.write("Navigate CHI 311")
 
 # tab_forecast formatting
 with tab_forecast:
     st.subheader("Forecasting 311 Call Volume by Chicago Neighborhood.  Models were trained on monthly Chicago 311 requests from 2019-2025.")
 # tab_geospastial formatting
 with tab_geospastial:
-    st.subheader("Below is an interactive map of Chicago's 77 community areas.  Hover and see how different neighborhoods use 311.")
+    st.subheader("Below is an interactive map of Chicago's 77 community areas.  Hover and see how different neighborhoods are using 311!")
     # --- Aggregate to one row per community area -------------------------------
     # Drop COMMUNITY_AREA == 0 (that's your citywide total row, not a real area)
     # and sum however many months/columns you want represented on the map.
