@@ -72,19 +72,19 @@ def forecast_page():
         "Models were trained on monthly Chicago 311 requests from 2019-2025."
     )
 
+area_id_to_name = {
+    int(feat["properties"]["area_numbe"]): feat["properties"]["community"].title()
+    for feat in geojson["features"]
+}
 
 def geospatial_page():
     st.subheader("Below is an interactive map of Chicago's 77 community areas. Hover and see how different neighborhoods use 311.")
 
-    # --- Aggregate request volume per community area ------------------------
     areas_only = total_requests[total_requests["COMMUNITY_AREA"] != 0]
     request_type_cols = [c for c in total_requests.columns if c not in ("YEAR_MONTH", "COMMUNITY_AREA")]
     by_area = areas_only.groupby("COMMUNITY_AREA")[request_type_cols].sum().sum(axis=1).reset_index()
     by_area.columns = ["COMMUNITY_AREA", "value"]
 
-    # --- Build a name -> area number map straight from the geojson ----------
-    # This is what lets us join the ACS file (keyed by name) onto the panel
-    # data (keyed by number) without a separate lookup table.
     name_to_area = {
         feat["properties"]["community"].strip().upper(): int(feat["properties"]["area_numbe"])
         for feat in geojson["features"]
@@ -92,15 +92,14 @@ def geospatial_page():
     population_by_area = population.copy()
     population_by_area["COMMUNITY_AREA"] = population_by_area["Community Area"].map(name_to_area)
 
-    # --- Join population onto request volume, compute per-capita rate -------
     by_area = by_area.merge(
         population_by_area[["COMMUNITY_AREA", "Total Population"]],
         on="COMMUNITY_AREA",
         how="left",
     )
     by_area["value_per_capita"] = (by_area["value"] / by_area["Total Population"]) * 1000
+    by_area["area_name"] = by_area["COMMUNITY_AREA"].map(area_id_to_name)  # <-- new
 
-    # --- Toggle between raw count and per-capita -----------------------------
     metric_mode = st.segmented_control(
         "Metric", options=["Raw count", "Per 1,000 residents"], default="Raw count"
     )
@@ -109,7 +108,6 @@ def geospatial_page():
     else:
         z_col, colorbar_title = "value_per_capita", "Requests per<br>1,000 residents"
 
-    # --- Build the choropleth -------------------------------------------------
     fig_map = go.Figure(
         go.Choropleth(
             geojson=geojson,
@@ -122,11 +120,11 @@ def geospatial_page():
             marker_line_color="white",
             marker_line_width=0.5,
             colorbar_title=colorbar_title,
-            customdata=by_area[["value", "Total Population"]],
+            customdata=by_area[["area_name", "value", "Total Population"]],  # name moved to front
             hovertemplate=(
-                "<b>Community Area %{location}</b><br>"
-                "Total requests: %{customdata[0]:,.0f}<br>"
-                "Population: %{customdata[1]:,.0f}<br>"
+                "<b>%{customdata[0]}</b><br>"
+                "Total requests: %{customdata[1]:,.0f}<br>"
+                "Population: %{customdata[2]:,.0f}<br>"
                 "Requests per 1,000: %{z:,.1f}"
                 "<extra></extra>"
             ),
@@ -136,19 +134,14 @@ def geospatial_page():
     fig_map.update_layout(height=550, margin=dict(l=0, r=0, t=10, b=0))
 
     map_event = st.plotly_chart(
-        fig_map,
-        use_container_width=True,
-        on_select="rerun",
-        selection_mode="points",
-        key="choropleth_map",
+        fig_map, use_container_width=True, on_select="rerun", selection_mode="points", key="choropleth_map",
     )
 
     if map_event.selection.points:
         clicked_area = map_event.selection.points[0].get("location")
-        st.success(f"Selected community area: {clicked_area}")
-        st.session_state["selected_area"] = clicked_area
-
-# print(set(population_by_area["Community Area"]) - set(name_to_area.keys()))
+        clicked_name = area_id_to_name.get(int(clicked_area), f"Area {clicked_area}")
+        st.success(f"Selected: {clicked_name}")
+        st.session_state["selected_area"] = clicked_area  # keep storing the number internally
 
 
 def snapshot_page():
