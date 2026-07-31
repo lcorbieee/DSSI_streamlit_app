@@ -209,8 +209,8 @@ def breakdown_page():
 
 
 def home_page():
-    st.title("CHI 311 Dashboard")
-    st.markdown("Powered by UChicago Data Science for Social Impact and the City of Chicago")
+    st.title("CHI 311 Interactive Dashboard")
+    st.subheader("Powered by UChicago Data Science for Social Impact and the City of Chicago")
     st.write(
         "Explore Chicago 311 service requests: historical patterns, geospatial breakdowns by neighborhood, and forecasts."
     )
