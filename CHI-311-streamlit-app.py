@@ -38,9 +38,9 @@ title_mark = st.markdown("Powered by UChicago Data Science for Social Impact and
 menu = st.sidebar.write("CHI 311")
 
 # tab formatting
-with menu:
-    tab_forecast, tab_geospastial, tab_snapshot, tab_breakdown = st.container(border=True).tabs(["Forecasting 🔮", "Geospatial Analysis 🗺️", "Snapshots 📸", "Dataset Breakdown 🧐"])
+tab_forecast, tab_geospastial, tab_snapshot, tab_breakdown = st.container(border=True).tabs(["Forecasting 🔮", "Geospatial Analysis 🗺️", "Snapshots 📸", "Dataset Breakdown 🧐"])
 
+with menu:
     # tab_forecast formatting
     with tab_forecast:
         st.subheader("Forecasting 311 Call Volume by Chicago Neighborhood.  Models were trained on monthly Chicago 311 requests from 2019-2025.")
