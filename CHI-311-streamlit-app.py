@@ -39,6 +39,13 @@ def load_geojson():
         return json.load(f)
 
 @st.cache_data
+def load_population():
+    pop = pd.read_csv("data/community_area_population.csv", thousands=",")
+    pop = pop[["Community Area", "Total Population"]].copy()
+    pop["Community Area"] = pop["Community Area"].str.strip().str.upper()
+    return pop
+
+@st.cache_data
 def load_categories():
     return pd.read_csv("data/request_type_categories.csv")
 
@@ -55,6 +62,7 @@ categories = load_categories()
 geojson = load_geojson()
 response_times = load_response_times()
 forecasts = load_forecasts()
+population = load_population()
 
 
 # --- Page functions (one per former "tab") ----------------------------------
@@ -68,23 +76,60 @@ def forecast_page():
 def geospatial_page():
     st.subheader("Below is an interactive map of Chicago's 77 community areas. Hover and see how different neighborhoods use 311.")
 
+    # --- Aggregate request volume per community area ------------------------
     areas_only = total_requests[total_requests["COMMUNITY_AREA"] != 0]
     request_type_cols = [c for c in total_requests.columns if c not in ("YEAR_MONTH", "COMMUNITY_AREA")]
     by_area = areas_only.groupby("COMMUNITY_AREA")[request_type_cols].sum().sum(axis=1).reset_index()
     by_area.columns = ["COMMUNITY_AREA", "value"]
 
+    # --- Build a name -> area number map straight from the geojson ----------
+    # This is what lets us join the ACS file (keyed by name) onto the panel
+    # data (keyed by number) without a separate lookup table.
+    name_to_area = {
+        feat["properties"]["community"].strip().upper(): int(feat["properties"]["area_numbe"])
+        for feat in geojson["features"]
+    }
+    population_by_area = population.copy()
+    population_by_area["COMMUNITY_AREA"] = population_by_area["Community Area"].map(name_to_area)
+
+    # --- Join population onto request volume, compute per-capita rate -------
+    by_area = by_area.merge(
+        population_by_area[["COMMUNITY_AREA", "Total Population"]],
+        on="COMMUNITY_AREA",
+        how="left",
+    )
+    by_area["value_per_capita"] = (by_area["value"] / by_area["Total Population"]) * 1000
+
+    # --- Toggle between raw count and per-capita -----------------------------
+    metric_mode = st.segmented_control(
+        "Metric", options=["Raw count", "Per 1,000 residents"], default="Raw count"
+    )
+    if metric_mode == "Raw count":
+        z_col, colorbar_title = "value", "Requests"
+    else:
+        z_col, colorbar_title = "value_per_capita", "Requests per<br>1,000 residents"
+
+    # --- Build the choropleth -------------------------------------------------
     fig_map = go.Figure(
         go.Choropleth(
             geojson=geojson,
             locations=by_area["COMMUNITY_AREA"],
             featureidkey="properties.area_numbe",
-            z=by_area["value"],
-            zmin=by_area["value"].min(),
-            zmax=by_area["value"].quantile(0.90),
+            z=by_area[z_col],
+            zmin=by_area[z_col].min(),
+            zmax=by_area[z_col].quantile(0.90),
             colorscale="Purples",
             marker_line_color="white",
             marker_line_width=0.5,
-            colorbar_title="Requests",
+            colorbar_title=colorbar_title,
+            customdata=by_area[["value", "Total Population"]],
+            hovertemplate=(
+                "<b>Community Area %{location}</b><br>"
+                "Total requests: %{customdata[0]:,.0f}<br>"
+                "Population: %{customdata[1]:,.0f}<br>"
+                "Requests per 1,000: %{z:,.1f}"
+                "<extra></extra>"
+            ),
         )
     )
     fig_map.update_geos(fitbounds="locations", visible=False)
@@ -102,6 +147,8 @@ def geospatial_page():
         clicked_area = map_event.selection.points[0].get("location")
         st.success(f"Selected community area: {clicked_area}")
         st.session_state["selected_area"] = clicked_area
+
+# print(set(population_by_area["Community Area"]) - set(name_to_area.keys()))
 
 
 def snapshot_page():
