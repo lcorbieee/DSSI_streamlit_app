@@ -13,6 +13,21 @@ st.set_page_config(
     },
 )
 
+st.markdown(
+    """
+    <style>
+    [data-testid="stSidebarNavItems"] {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 85vh;   /* the container needs an actual height for
+                           space-between to have room to distribute into */
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
 # --- Data loading (shared across every page, runs once per rerun) ----------
 @st.cache_data
 def load_entire_df():
