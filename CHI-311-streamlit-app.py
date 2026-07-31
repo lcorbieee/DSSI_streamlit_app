@@ -3,6 +3,16 @@ import pandas as pd
 import json
 import plotly.graph_objects as go
 
+st.set_page_config(
+    page_title=str, 
+    page_icon="https://pbs.twimg.com/profile_images/1229828517526851584/4yqr6QTK_400x400.png", 
+    layout="wide", 
+    initial_sidebar_state="auto", 
+    menu_items="'About': 'This dashboard was created by four students in the UChicago Data Science for Social Impact Summer Program.'"
+    )
+
+
+
 @st.cache_data
 def load_entire_df():
     return pd.read_csv("data/request_counts_by_community_area_year_month.csv")
@@ -38,7 +48,9 @@ title_mark = st.markdown("Powered by UChicago Data Science for Social Impact and
 menu = st.sidebar.write("CHI 311")
 
 # tab formatting
-tab_forecast, tab_geospastial, tab_snapshot, tab_breakdown = st.container(border=True).tabs(["Forecasting 🔮", "Geospatial Analysis 🗺️", "Snapshots 📸", "Dataset Breakdown 🧐"])
+tab_forecast, tab_geospastial, tab_snapshot, tab_breakdown = st.container(border=True).tabs(
+    ["Forecasting 🔮", "Geospatial Analysis 🗺️", "Snapshots 📸", "Dataset Breakdown 🧐"]
+)
 
 with menu:
     # tab_forecast formatting
