@@ -105,8 +105,21 @@ def geospatial_page():
     )
     if metric_mode == "Raw count":
         z_col, colorbar_title = "value", "Requests"
+        hovertemplate = (
+            "<b>%{customdata[0]}</b><br>"
+            "Total requests: %{customdata[1]:,.0f}<br>"
+            "Population: %{customdata[2]:,.0f}"
+            "<extra></extra>"
+        )
     else:
         z_col, colorbar_title = "value_per_capita", "Requests per<br>1,000 residents"
+        hovertemplate = (
+            "<b>%{customdata[0]}</b><br>"
+            "Total requests: %{customdata[1]:,.0f}<br>"
+            "Population: %{customdata[2]:,.0f}<br>"
+            "Requests per 1,000: %{z:,.1f}"
+            "<extra></extra>"
+        )
 
     fig_map = go.Figure(
         go.Choropleth(
@@ -121,13 +134,7 @@ def geospatial_page():
             marker_line_width=0.5,
             colorbar_title=colorbar_title,
             customdata=by_area[["area_name", "value", "Total Population"]],  # name moved to front
-            hovertemplate=(
-                "<b>%{customdata[0]}</b><br>"
-                "Total requests: %{customdata[1]:,.0f}<br>"
-                "Population: %{customdata[2]:,.0f}<br>"
-                "Requests per 1,000: %{z:,.1f}"
-                "<extra></extra>"
-            ),
+            hovertemplate=hovertemplate,
         )
     )
     fig_map.update_geos(fitbounds="locations", visible=False)
