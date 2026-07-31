@@ -28,6 +28,20 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
+st.markdown(
+    """
+    <style>
+    [data-testid="stSidebarNavItems"] {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        font-size: 20px;   /* default is ~14-16px — bump this up */
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
 # --- Data loading (shared across every page, runs once per rerun) ----------
 @st.cache_data
 def load_entire_df():
@@ -105,7 +119,7 @@ def geospatial_page():
 
 
 def snapshot_page():
-    st.subheader("Enjoy some bite-sized analyses of our data.")
+    st.subheader("Enjoy some facts derived from our data.")
     st.dataframe(response_times, use_container_width=True)
 
 
