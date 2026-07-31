@@ -27,21 +27,6 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-# st.markdown(
-#     """
-#     <style>
-#     [data-testid="stSidebarNavItems"] {
-#         display: flex;
-#         flex-direction: column;
-#         justify-content: space-between;
-#         gap: 0.5rem;
-#         height: 50vh;
-#         font-size: 30px;
-#     }
-#     </style>
-#     """,
-#     unsafe_allow_html=True,
-# )
 
 # --- Data loading (shared across every page, runs once per rerun) ----------
 @st.cache_data
