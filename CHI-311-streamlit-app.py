@@ -212,9 +212,7 @@ def home_page():
     st.title("CHI 311 Dashboard")
     st.markdown("Powered by UChicago Data Science for Social Impact and the City of Chicago")
     st.write(
-        "Explore Chicago 311 service request volume — historical patterns, "
-        "geospatial breakdowns by neighborhood, and forecasts — using data "
-        "from 2019-2025."
+        "Explore Chicago 311 service requests: historical patterns, geospatial breakdowns by neighborhood, and forecasts."
     )
 
 
