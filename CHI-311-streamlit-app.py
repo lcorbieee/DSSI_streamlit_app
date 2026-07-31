@@ -20,7 +20,7 @@ st.markdown(
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        height: 85vh;   /* the container needs an actual height for
+        height: 50vh;   /* the container needs an actual height for
                            space-between to have room to distribute into */
     }
     </style>
