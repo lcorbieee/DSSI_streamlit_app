@@ -78,7 +78,7 @@ area_id_to_name = {
 }
 
 def geospatial_page():
-    st.subheader("Below is an interactive map of Chicago's 77 community areas. Hover and see how different neighborhoods use 311.")
+    st.subheader("Below is an interactive map of Chicago's 77 community areas. Hover to see the different neighborhoods' volume of requests.")
 
     areas_only = total_requests[total_requests["COMMUNITY_AREA"] != 0]
     request_type_cols = [c for c in total_requests.columns if c not in ("YEAR_MONTH", "COMMUNITY_AREA")]
@@ -129,7 +129,7 @@ def geospatial_page():
             z=by_area[z_col],
             zmin=by_area[z_col].min(),
             zmax=by_area[z_col].quantile(0.90),
-            colorscale="Purples",
+            colorscale="Reds",
             marker_line_color="white",
             marker_line_width=0.5,
             colorbar_title=colorbar_title,
