@@ -78,7 +78,7 @@ area_id_to_name = {
 }
 
 def geospatial_page():
-    st.subheader("Below is an interactive map of Chicago's 77 community areas. Hover to see the different neighborhoods' volume of requests.")
+    st.subheader("Below is an interactive map of Chicago's 77 community areas. Hover to see each neighborhoods' volume of 311 requests.")
 
     areas_only = total_requests[total_requests["COMMUNITY_AREA"] != 0]
     request_type_cols = [c for c in total_requests.columns if c not in ("YEAR_MONTH", "COMMUNITY_AREA")]
@@ -117,7 +117,7 @@ def geospatial_page():
             "<b>%{customdata[0]}</b><br>"
             "Total requests: %{customdata[1]:,.0f}<br>"
             "Population: %{customdata[2]:,.0f}<br>"
-            "Requests per 1,000: %{z:,.1f}"
+            "Requests per 1,000 residents: %{z:,.1f}"
             "<extra></extra>"
         )
 
