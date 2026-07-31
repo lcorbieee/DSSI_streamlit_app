@@ -4,11 +4,13 @@ import json
 import plotly.graph_objects as go
 
 st.set_page_config(
-    page_title=str, 
+    page_title="CHI 311 PLACEHOLDER TITLE\n", 
     page_icon="https://pbs.twimg.com/profile_images/1229828517526851584/4yqr6QTK_400x400.png", 
     layout="wide", 
     initial_sidebar_state="auto", 
-    menu_items="'About': 'This dashboard was created by four students in the UChicago Data Science for Social Impact Summer Program.'"
+    menu_items={
+    'About': 'This dashboard was created by four students in the UChicago Data Science for Social Impact Summer Program.'
+    }
     )
 
 
@@ -41,7 +43,7 @@ response_times = load_response_times()
 forecasts = load_forecasts()
 
 # home page formatting
-title = st.title("CHI 311 PLACEHOLDER TITLE\n")
+# title = st.title("CHI 311 PLACEHOLDER TITLE\n")
 title_mark = st.markdown("Powered by UChicago Data Science for Social Impact and the City of Chicago")
 
 # sidebar formatting
