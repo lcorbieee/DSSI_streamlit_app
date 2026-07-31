@@ -152,24 +152,6 @@ st.sidebar.write("CHI 311")
 
 
 # --- Page functions (one per former "tab") ----------------------------------
-def home_page():
-    st.title("CHI 311 Dashboard")
-    st.markdown("Powered by UChicago Data Science for Social Impact and the City of Chicago")
-    st.write(
-        "Explore Chicago 311 service request volume — historical patterns, "
-        "geospatial breakdowns by neighborhood, and forecasts — using data "
-        "from 2019-2025."
-    )
-
-pages = [
-    st.Page(home_page, title="Home", icon="🏠", default=True),
-    st.Page(forecast_page, title="Forecasting", icon="🔮"),
-    st.Page(geospatial_page, title="Geospatial Analysis", icon="🗺️"),
-    st.Page(snapshot_page, title="Snapshots", icon="📸"),
-    st.Page(breakdown_page, title="Dataset Breakdown", icon="🧐"),
-]
-
-
 def forecast_page():
     st.subheader(
         "Forecasting 311 Call Volume by Chicago Neighborhood. "
@@ -226,13 +208,25 @@ def breakdown_page():
     st.dataframe(total_requests, use_container_width=True)
 
 
+def home_page():
+    st.title("CHI 311 Dashboard")
+    st.markdown("Powered by UChicago Data Science for Social Impact and the City of Chicago")
+    st.write(
+        "Explore Chicago 311 service request volume — historical patterns, "
+        "geospatial breakdowns by neighborhood, and forecasts — using data "
+        "from 2019-2025."
+    )
+
+
 # --- Navigation: this is what puts the pages in the sidebar -----------------
 pages = [
+    st.Page(home_page, title="Home", icon="🏠", default=True),
     st.Page(forecast_page, title="Forecasting", icon="🔮"),
     st.Page(geospatial_page, title="Geospatial Analysis", icon="🗺️"),
     st.Page(snapshot_page, title="Snapshots", icon="📸"),
     st.Page(breakdown_page, title="Dataset Breakdown", icon="🧐"),
 ]
+
 
 pg = st.navigation(pages)  # position="sidebar" is the default
 pg.run()
