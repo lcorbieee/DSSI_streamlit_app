@@ -40,7 +40,7 @@ def load_geojson():
 
 @st.cache_data
 def load_population():
-    pop = pd.read_csv("data/community_area_population.csv", thousands=",")
+    pop = pd.read_csv("data/ACS_5_Year_Data_by_Community_Area_20260720.csv", thousands=",")
     pop = pop[["Community Area", "Total Population"]].copy()
     pop["Community Area"] = pop["Community Area"].str.strip().str.upper()
     return pop
