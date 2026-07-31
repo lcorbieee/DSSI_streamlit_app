@@ -31,65 +31,69 @@ response_times = load_response_times()
 forecasts = load_forecasts()
 
 # home page formatting
-title = st.title("Forecasting 311 Call Volume by Chicago Neighborhood\n")
+title = st.title("CHI 311 PLACEHOLDER TITLE\n")
 title_mark = st.markdown("Powered by UChicago Data Science for Social Impact and the City of Chicago")
 
+# sidebar formatting
+menu = st.sidebar.write("CHI 311")
+
 # tab formatting
-tab_forecast, tab_geospastial, tab_snapshot, tab_breakdown = st.container(border=True).tabs(["Forecasting 🔮", "Geospatial Analysis 🗺️", "Snapshots 📸", "Dataset Breakdown 🧐"])
+with menu:
+    tab_forecast, tab_geospastial, tab_snapshot, tab_breakdown = st.container(border=True).tabs(["Forecasting 🔮", "Geospatial Analysis 🗺️", "Snapshots 📸", "Dataset Breakdown 🧐"])
 
-# tab_forecast formatting
-with tab_forecast:
-    st.subheader("Models were trained on monthly Chicago 311 calls from 2019-2025.")
-# tab_geospastial formatting
-with tab_geospastial:
-    st.subheader("Below is an interactive map of Chicago's 77 community areas.  Hover and see how different neighborhoods use 311.")
-    # --- Aggregate to one row per community area -------------------------------
-    # Drop COMMUNITY_AREA == 0 (that's your citywide total row, not a real area)
-    # and sum however many months/columns you want represented on the map.
-    areas_only = total_requests[total_requests["COMMUNITY_AREA"] != 0]
+    # tab_forecast formatting
+    with tab_forecast:
+        st.subheader("Forecasting 311 Call Volume by Chicago Neighborhood.  Models were trained on monthly Chicago 311 requests from 2019-2025.")
+    # tab_geospastial formatting
+    with tab_geospastial:
+        st.subheader("Below is an interactive map of Chicago's 77 community areas.  Hover and see how different neighborhoods use 311.")
+        # --- Aggregate to one row per community area -------------------------------
+        # Drop COMMUNITY_AREA == 0 (that's your citywide total row, not a real area)
+        # and sum however many months/columns you want represented on the map.
+        areas_only = total_requests[total_requests["COMMUNITY_AREA"] != 0]
 
-    request_type_cols = [c for c in total_requests.columns if c not in ("YEAR_MONTH", "COMMUNITY_AREA")]
-    by_area = areas_only.groupby("COMMUNITY_AREA")[request_type_cols].sum().sum(axis=1).reset_index()
-    by_area.columns = ["COMMUNITY_AREA", "value"]
+        request_type_cols = [c for c in total_requests.columns if c not in ("YEAR_MONTH", "COMMUNITY_AREA")]
+        by_area = areas_only.groupby("COMMUNITY_AREA")[request_type_cols].sum().sum(axis=1).reset_index()
+        by_area.columns = ["COMMUNITY_AREA", "value"]
 
-    # --- Build the choropleth ----------------------------------------------------
-    fig_map = go.Figure(
-        go.Choropleth(
-            geojson=geojson,
-            locations=by_area["COMMUNITY_AREA"],       # values to match against featureidkey
-            featureidkey="properties.area_numbe",       # the property in your geojson holding the area number
-            z=by_area["value"],                          # the color-scale variable
-            zmin=by_area["value"].min(),
-            zmax=by_area["value"].quantile(0.90),        # 90th percentile, not max — keeps one huge outlier area
-                                                       # from washing out color contrast on every other area
-            colorscale="Purples",
-            marker_line_color="white",
-            marker_line_width=0.5,
-            colorbar_title="Requests",
+        # --- Build the choropleth ----------------------------------------------------
+        fig_map = go.Figure(
+            go.Choropleth(
+                geojson=geojson,
+                locations=by_area["COMMUNITY_AREA"],       # values to match against featureidkey
+                featureidkey="properties.area_numbe",       # the property in your geojson holding the area number
+                z=by_area["value"],                          # the color-scale variable
+                zmin=by_area["value"].min(),
+                zmax=by_area["value"].quantile(0.90),        # 90th percentile, not max — keeps one huge outlier area
+                                                        # from washing out color contrast on every other area
+                colorscale="Purples",
+                marker_line_color="white",
+                marker_line_width=0.5,
+                colorbar_title="Requests",
+            )
         )
-    )
 
-    fig_map.update_geos(fitbounds="locations", visible=False)  # zooms to just your boundaries, hides base map
-    fig_map.update_layout(height=550, margin=dict(l=0, r=0, t=10, b=0))
+        fig_map.update_geos(fitbounds="locations", visible=False)  # zooms to just your boundaries, hides base map
+        fig_map.update_layout(height=550, margin=dict(l=0, r=0, t=10, b=0))
 
-    # --- Render it, with click-to-select enabled ---------------------------------
-    map_event = st.plotly_chart(
-        fig_map,
-        use_container_width=True,
-        on_select="rerun",
-        selection_mode="points",
-        key="choropleth_map",
-    )
+        # --- Render it, with click-to-select enabled ---------------------------------
+        map_event = st.plotly_chart(
+            fig_map,
+            use_container_width=True,
+            on_select="rerun",
+            selection_mode="points",
+            key="choropleth_map",
+        )
 
-    if map_event.selection.points:
-        clicked_area = map_event.selection.points[0].get("location")
-        st.success(f"Selected community area: {clicked_area}")
-        st.session_state["selected_area"] = clicked_area
-# tab_snapshot formatting
-with tab_snapshot:
-    st.subheader("Enjoy some bite-sized analyses of our data.")
-    st.dataframe(response_times, use_container_width=True)
-# tab_breakdown formatting
-with tab_breakdown:
-    st.subheader("Learn more about our dataset and research methods.")
-    st.dataframe(total_requests, use_container_width=True)
+        if map_event.selection.points:
+            clicked_area = map_event.selection.points[0].get("location")
+            st.success(f"Selected community area: {clicked_area}")
+            st.session_state["selected_area"] = clicked_area
+    # tab_snapshot formatting
+    with tab_snapshot:
+        st.subheader("Enjoy some bite-sized analyses of our data.")
+        st.dataframe(response_times, use_container_width=True)
+    # tab_breakdown formatting
+    with tab_breakdown:
+        st.subheader("Learn more about our dataset and research methods.")
+        st.dataframe(total_requests, use_container_width=True)
