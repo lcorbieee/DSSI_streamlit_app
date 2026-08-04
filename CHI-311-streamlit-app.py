@@ -152,12 +152,12 @@ def geospatial_page():
 
 
 def snapshot_page():
-    st.subheader("Enjoy some facts derived from our data.")
+    st.subheader("Enjoy some fast facts derived from our data!")
     st.dataframe(response_times, use_container_width=True)
 
 
 def breakdown_page():
-    st.subheader("Learn more about our dataset and research methods.")
+    st.subheader("Learn more about our dataset and research methods:")
 
     st.write("A monthly panel of 311 request counts derived from the City's public data. Each row is a place-and-month — a community area in a given month (plus citywide total rows) — with one column per request type giving how many of that type were created there that month. It covers 2019–2025 for 55 of the most common request types across Chicago's 77 community areas (stable, official neighborhood units).")
 
