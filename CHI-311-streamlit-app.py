@@ -13,6 +13,10 @@ st.set_page_config(
     },
 )
 
+@st.cache_data
+def convert_df_to_csv(df):
+    return df.to_csv(index=False).encode("utf-8")
+
 st.markdown(
     """
     <style>
