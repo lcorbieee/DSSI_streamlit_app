@@ -164,7 +164,7 @@ def breakdown_page():
     st.subheader("Learn more about our dataset and research methods:")
 
     st.write(
-        "A monthly panel of 311 request counts derived from the City's public data. "
+        "Our primary dataset is monthly panel of 311 request counts derived from the City's public data. "
         "Each row is a place-and-month — a community area in a given month (plus "
         "citywide total rows) — with one column per request type giving how many of "
         "that type were created there that month. It covers 2019–2025 for 55 of the "
