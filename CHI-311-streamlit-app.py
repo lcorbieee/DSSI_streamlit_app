@@ -175,7 +175,7 @@ def breakdown_page():
     st.dataframe(total_requests, use_container_width=True)
 
     st.download_button(
-        label="Download full dataset (CSV)",
+        label="Download full dataset (.CSV)",
         data=convert_df_to_csv(total_requests),
         file_name="total_requests.csv",
         mime="text/csv",
