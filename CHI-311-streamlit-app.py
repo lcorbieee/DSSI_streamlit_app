@@ -179,7 +179,7 @@ pages = [
 ]
 
 
-pg = st.navigation(pages)  # position="sidebar" is the default
+pg = st.navigation(pages)  # position="sidebar" is default
 pg.run()
 
 
