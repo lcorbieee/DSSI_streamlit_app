@@ -17,6 +17,7 @@ A monthly panel of 311 request counts derived from the City's public data. Each 
 
 
 The task:
+
 Forecast future monthly 311 request volume from its recent history. The data gives you everything known up to a given month; you predict what comes next.
 
 There are two goals, in order of difficulty.
