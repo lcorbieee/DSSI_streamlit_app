@@ -1,6 +1,6 @@
 This repository was created for the creation and upkeep of the Streamlit interactive dashboard for the DSSI '26 Chicago 311 Project.
 
-                                            Predicting Chicago 311 Service Requests
+                                        Predicting Chicago 311 Service Requests
 Our Partner:
 
 The City of Chicago. Chicago's 311 system is the front door for non-emergency city services: residents call, use the web portal, or use the CHI311 app to report potholes, broken street lights, graffiti, rodents, missed garbage pickups, tree issues, and dozens of other concerns. Requests are routed to the responsible departments (Streets and Sanitation, CDOT, Water Management, Buildings, Animal Care and Control, and others), which deliver the actual services. The City publishes every request as open data.
