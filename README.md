@@ -26,8 +26,4 @@ There are two goals, in order of difficulty.
 Predict the citywide monthly request volume (the COMMUNITY_AREA == 0 rows), type by type. This is the core forecasting problem — one time series per request type — and where everyone should begin. Get a model working, validated, and beating a simple baseline here before moving on.
 
 **Goal 2** — forecast demand by community area
-Once citywide forecasting works, predict demand for each of the 77 community areas (the COMMUNITY_AREA 1–77 rows). This is harder because:
-
-it's many more, noisier series (77 areas × types instead of one citywide series per type), and small areas have low, choppy counts;
-demand patterns differ by neighborhood, so a single model may not transfer;
-it's the level that matters most for equitable planning — making sure resources reach the places that will need them.
+Once citywide forecasting works, predict demand for each of the 77 community areas (the COMMUNITY_AREA 1–77 rows). This is harder because it's many more noisier series (77 areas × types instead of one citywide series per type), and small areas have low, choppy counts; demand patterns differ by neighborhood, so a single model may not transfer; it's the level that matters most for equitable planning — making sure resources reach the places that will need them.
