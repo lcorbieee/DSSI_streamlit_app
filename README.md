@@ -1,4 +1,4 @@
-This repository was created for the creation and upkeep of the Streamlit interactive dashboard for the DSSI '26 Chicago 311 Project.  The Project description is as follows:
+This repository was created for the creation and upkeep of the Streamlit interactive dashboard for the DSSI '26 Chicago 311 Project.
 
                                             Predicting Chicago 311 Service Requests
 Our Partner:
