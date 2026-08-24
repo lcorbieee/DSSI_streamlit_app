@@ -21,8 +21,10 @@ The task:
 Forecast future monthly 311 request volume from its recent history. The data gives you everything known up to a given month; you predict what comes next.
 
 There are two goals, in order of difficulty.
+
 **Goal 1** — forecast citywide demand
 Predict the citywide monthly request volume (the COMMUNITY_AREA == 0 rows), type by type. This is the core forecasting problem — one time series per request type — and where everyone should begin. Get a model working, validated, and beating a simple baseline here before moving on.
+
 **Goal 2** — forecast demand by community area
 Once citywide forecasting works, predict demand for each of the 77 community areas (the COMMUNITY_AREA 1–77 rows). This is harder because:
 
